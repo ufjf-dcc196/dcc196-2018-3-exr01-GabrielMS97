@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">dcc196Exercicio01</string>
+    <string name="hintNome">Nome</string>
+    <string name="hintMatricula">Matrícula</string>
 </resources>
