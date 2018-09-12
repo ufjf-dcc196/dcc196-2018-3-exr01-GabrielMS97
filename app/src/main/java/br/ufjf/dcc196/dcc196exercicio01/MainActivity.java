@@ -45,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, MainActivity.REQUEST_ALUNO);
             }
         });
+
+        btnProfessor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AlunoActivity.class);
+                startActivityForResult(intent, MainActivity.REQUEST_PROF);
+            }
+        });
     }
 
     @Override
