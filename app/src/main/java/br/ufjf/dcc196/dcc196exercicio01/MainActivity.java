@@ -1,5 +1,6 @@
 package br.ufjf.dcc196.dcc196exercicio01;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,12 +10,21 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_PROF = 1;
+    private static final int REQUEST_ALUNO = 2;
+    private static final int REQUEST_EXTERNO = 3;
+
+
     private Button btnAluno;
     private Button btnProfessor;
     private Button btnExterno;
     private TextView txtAluno;
     private TextView txtProfessor;
     private TextView txtExterno;
+
+    private int totalAlunos = 0;
+    private int totalExternos = 0;
+    private int totalProfessores = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +42,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AlunoActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, MainActivity.REQUEST_ALUNO);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == MainActivity.REQUEST_ALUNO && resultCode == Activity.RESULT_OK){
+            totalAlunos++;
+            txtAluno.setText("Alunos: " + totalAlunos);
+        }
+        txtProfessor.setText("Professores: " + totalProfessores);
+        txtExterno.setText("Externos: " + totalExternos);
+
     }
 }
