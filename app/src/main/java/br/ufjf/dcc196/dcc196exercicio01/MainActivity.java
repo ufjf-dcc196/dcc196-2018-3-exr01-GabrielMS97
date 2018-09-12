@@ -49,8 +49,16 @@ public class MainActivity extends AppCompatActivity {
         btnProfessor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AlunoActivity.class);
+                Intent intent = new Intent(MainActivity.this, ProfessorActivity.class);
                 startActivityForResult(intent, MainActivity.REQUEST_PROF);
+            }
+        });
+
+        btnExterno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ExternoActivity.class);
+                startActivityForResult(intent, MainActivity.REQUEST_EXTERNO);
             }
         });
     }
@@ -62,8 +70,13 @@ public class MainActivity extends AppCompatActivity {
             totalAlunos++;
             txtAluno.setText("Alunos: " + totalAlunos);
         }
-        txtProfessor.setText("Professores: " + totalProfessores);
-        txtExterno.setText("Externos: " + totalExternos);
-
+        if(requestCode == MainActivity.REQUEST_PROF && resultCode == Activity.RESULT_OK){
+            totalProfessores++;
+            txtProfessor.setText("Professores: " + totalProfessores);
+        }
+        if(requestCode == MainActivity.REQUEST_EXTERNO && resultCode == Activity.RESULT_OK){
+            totalExternos++;
+            txtExterno.setText("Externos: " + totalExternos);
+        }
     }
 }
